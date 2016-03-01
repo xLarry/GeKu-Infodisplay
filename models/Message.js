@@ -8,6 +8,9 @@ module.exports = function(sequelize, DataTypes) {
         Message.create({
             content: 'asdf'
         });
+        Message.create({
+            content: 'jklö'
+        });
     });
 
     return Message;
