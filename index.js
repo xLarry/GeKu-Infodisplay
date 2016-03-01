@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 router.use(function(req, res, next) {
     // do logging
     console.log('Something is happening.');
+    res.setHeader("Access-Control-Allow-Origin", "*");
     next();
 });
 

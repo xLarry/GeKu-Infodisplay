@@ -22,15 +22,23 @@
 
       <h1>Hello, {{ display.name }}!</h1>
 
+      <div class="form-group">
+        <label for="asdf">Enter Name</label>
+        <input type="text" class="form-control" id="asdf" ng-model="display.name">
+      </div>
+
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-6">
 
-      <div class="form-group">
-        <label for="asdf">Enter Name</label>
-        <input type="text" class="form-control" id="asdf" ng-model="display.name">
+      <h1>Messages <span class="badge">{{ display.messages.length }}</span></h1>
+
+
+      <div class="well" ng-repeat="message in display.messages">
+        <p class="text-muted"><small>{{ message.createdAt | date: 'EEEE, d. MMMM y - HH:mm:ss' }}</small></p>
+        <p>{{ message.id }}: {{ message.content }}</p>
       </div>
 
     </div>
@@ -42,6 +50,7 @@
 <script src="vendor/js/angular.js"></script>
 
 <script src="js/app.js"></script>
+<script src="js/services/MessageService.js"></script>
 <script src="js/controllers/DisplayCtrl.js"></script>
 
 </body>
