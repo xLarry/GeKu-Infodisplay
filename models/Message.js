@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     Message.sync({force: true}).then(function(){
         Message.create({
             content: 'asdf'
-        })
+        });
     });
 
     return Message;

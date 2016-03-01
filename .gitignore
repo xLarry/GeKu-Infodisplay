@@ -30,3 +30,9 @@ node_modules
 .npm
 
 # Optional REPL history
+
+# JetBrains folder
+.idea
+
+# Other stuff
+frontend/vendor
