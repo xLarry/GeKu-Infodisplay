@@ -20,6 +20,7 @@ router.use(function(req, res, next) {
     // do logging
     console.log('Something is happening.');
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "PUT,GET,DELETE,POST");
     next();
 });
 

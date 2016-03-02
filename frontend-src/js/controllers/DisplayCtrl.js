@@ -4,12 +4,32 @@ angular.module("GekuInfodisplay")
 
         var display = this;
 
-        display.name = "GeKu";
+        display.message = "My awesome message";
 
-        MessageService
-            .getMessages()
-            .then(function(response) {
-                display.messages = response;
-            });
+        display.createMessage = function createMessage() {
+            MessageService
+                .createMessage(display.message)
+                .then(function() {
+                    display.getMessages();
+                });
+        };
+
+        display.deleteMessage = function deleteMessage(id) {
+            MessageService
+                .deleteMessage(id)
+                .then(function() {
+                    display.getMessages();
+                });
+        };
+
+        display.getMessages = function getMessages() {
+            MessageService
+                .getMessages()
+                .then(function(response) {
+                    display.messages = response;
+                });
+        };
+
+        display.getMessages();
 
     });

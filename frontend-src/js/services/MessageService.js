@@ -1,6 +1,6 @@
 angular.module("GekuInfodisplay")
 
-    .factory("MessageService", function($http) {
+    .factory("MessageService", function($http, $httpParamSerializerJQLike) {
 
         var apiUrl = "http://localhost:3000/api";
 
@@ -13,8 +13,34 @@ angular.module("GekuInfodisplay")
                 });
         }
 
+        function createMessage(messageText) {
+            return $http
+                .put(apiUrl + "/messages", $httpParamSerializerJQLike({
+                content: messageText
+            }), {
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                })
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+
+        function deleteMessage(messageId) {
+            return $http({
+                url: apiUrl + "/messages",
+                method: 'DELETE',
+                data: $httpParamSerializerJQLike({ id: messageId }),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .then(function(response) {
+                    return response.data;
+                });
+        }
+
         return {
-            getMessages: getMessages
+            getMessages: getMessages,
+            createMessage: createMessage,
+            deleteMessage: deleteMessage
         };
 
     });
