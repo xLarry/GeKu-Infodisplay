@@ -29,12 +29,46 @@ router.get('/', function(req, res) {
 
 router.route('/messages')
 
+    // CREATE
+    .put(function(req, res) {
+        console.log(req);
+        models.message.create({
+            content: req.body.content
+        }).then(function(message) {
+            res.json(message);
+        });
+    })
+
+    // READ
     .get(function(req, res) {
         models.message.findAll().then(function(messages) {
             res.json(messages);
         });
-    });
+    })
 
+    // UPDATE
+    // n/a
+
+    // DELETE
+    .delete(function(req, res) {
+        if (req.body.id) {
+            // Delete one message
+            models.message.findById(req.body.id).then(function(message) {
+                if (!message) {
+                    res.send("Message with ID " + req.body.id + " not found!");
+                } else {
+                    message.destroy();
+                    res.send('Message successfully deleted');
+                }
+            });
+        } else {
+            // Delete all messages
+            models.message.destroy({
+                truncate: true
+            });
+            res.send("All messages have been deleted");
+        }
+    });
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
