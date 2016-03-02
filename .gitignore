@@ -35,4 +35,6 @@ node_modules
 .idea
 
 # Other stuff
-frontend/vendor
+infodisplay.sqlite
+.sass-cache
+frontend
