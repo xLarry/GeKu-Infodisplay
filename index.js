@@ -6,6 +6,7 @@ var models          = require('./models/index.js');
 var app             = express();
 var router          = express.Router();
 
+app.use(express.static(__dirname + '/frontend'));
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
