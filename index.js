@@ -2,6 +2,7 @@ var express         = require('express');
 var bodyParser      = require('body-parser');
 
 var models          = require('./models/index.js');
+var saunaService    = require('./services/saunaService.js');
 
 var app             = express();
 var router          = express.Router();
@@ -17,8 +18,6 @@ app.use(bodyParser.json());
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
-    // do logging
-    console.log('Something is happening.');
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "PUT,GET,DELETE,POST");
     next();
@@ -72,6 +71,13 @@ router.route('/messages')
             res.send("All messages have been deleted");
         }
     });
+
+router.route('/sauna')
+    .get(function(req, res) {
+        saunaService.getTemp().then(function(temp) {
+            res.json({temp: temp});
+        });
+    })
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
