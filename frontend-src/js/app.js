@@ -1,4 +1,4 @@
-angular.module("GekuInfodisplay", [])
+angular.module("GekuInfodisplay", ['ngResource'])
 
     .config(function() {
         console.log("config");

@@ -33,7 +33,7 @@ router.route('/messages')
 
     // CREATE
     .put(function(req, res) {
-        console.log(req);
+        //console.log(req);
         models.message.create({
             content: req.body.content
         }).then(function(message) {
@@ -53,11 +53,12 @@ router.route('/messages')
 
     // DELETE
     .delete(function(req, res) {
-        if (req.body.id) {
+        console.log(req.query);
+        if (req.query.id) {
             // Delete one message
-            models.message.findById(req.body.id).then(function(message) {
+            models.message.findById(req.query.id).then(function(message) {
                 if (!message) {
-                    res.send("Message with ID " + req.body.id + " not found!");
+                    res.send("Message with ID " + req.query.id + " not found!");
                 } else {
                     message.destroy();
                     res.send('Message successfully deleted');
