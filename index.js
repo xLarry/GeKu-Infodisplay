@@ -1,8 +1,12 @@
 var express         = require('express');
 var bodyParser      = require('body-parser');
+var keys            = require('./keys.js')
+var wia             = require('wia')(keys.wia);
+
+wia.stream.connect();
 
 var models          = require('./models/index.js');
-var saunaService    = require('./services/saunaService.js');
+var saunaService    = require('./services/saunaService.js')(wia);
 
 var app             = express();
 var router          = express.Router();
@@ -13,6 +17,9 @@ app.use(express.static(__dirname + '/frontend'));
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+//  Send temperature to Wia every 60 seconds
+setInterval(saunaService.sendTemp, 60000);
 
 /* Routes */
 
