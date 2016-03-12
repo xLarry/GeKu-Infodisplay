@@ -18,7 +18,9 @@ module.exports = function(grunt) {
                     'frontend/js/libraries.js': [
                         'node_modules/jquery/dist/jquery.js',
                         'node_modules/angular/angular.js',
-                        'node_modules/angular-resource/angular-resource.min.js'
+                        'node_modules/angular-resource/angular-resource.min.js',
+                        'node_modules/moment/moment.js',
+                        'node_modules/moment/locale/de.js'
                     ],
                     'frontend/js/app-complete.js': [
                         'frontend-src/js/app.js',

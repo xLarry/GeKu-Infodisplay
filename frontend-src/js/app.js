@@ -5,5 +5,5 @@ angular.module("GekuInfodisplay", ['ngResource'])
     })
 
     .run(function() {
-        console.log("run");
+        moment.locale('de');
     });

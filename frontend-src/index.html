@@ -20,7 +20,7 @@
 
       <div class="well" ng-repeat="message in display.messages | orderBy : '-id'">
         <div class="pull-right"><a ng-click="display.deleteMessage(message)">X</a></div>
-        <p class="text-muted"><small>{{ message.createdAt | date: 'EEEE, d. MMMM y - HH:mm:ss' }}</small></p>
+        <p class="text-muted"><small>{{ message.createdAt | fromNow }}</small></p>
         <p>{{ message.id }}: {{ message.content }}</p>
       </div>
 
