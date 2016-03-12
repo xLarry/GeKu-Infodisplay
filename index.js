@@ -64,10 +64,10 @@ router.route('/messages')
             // Delete one message
             models.message.findById(req.query.id).then(function(message) {
                 if (!message) {
-                    res.send("Message with ID " + req.query.id + " not found!");
+                    res.json({status: 'error', message: "Message with ID " + req.query.id + " not found!"});
                 } else {
                     message.destroy();
-                    res.send('Message successfully deleted');
+                    res.json({status: 'success'});
                 }
             });
         } else {

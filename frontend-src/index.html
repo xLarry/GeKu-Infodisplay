@@ -38,7 +38,7 @@
       <h1>Messages <span class="badge">{{ display.messages.length }}</span></h1>
 
       <div class="well" ng-repeat="message in display.messages | orderBy : '-id'">
-        <div class="pull-right"><a ng-click="display.deleteMessage(message.id)">X</a></div>
+        <div class="pull-right"><a ng-click="display.deleteMessage(message)">X</a></div>
         <p class="text-muted"><small>{{ message.createdAt | date: 'EEEE, d. MMMM y - HH:mm:ss' }}</small></p>
         <p>{{ message.id }}: {{ message.content }}</p>
       </div>
