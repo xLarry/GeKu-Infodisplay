@@ -19,9 +19,8 @@
     <div class="col-sm-12">
 
       <div class="well" ng-repeat="message in display.messages | orderBy : '-id'">
-        <div class="pull-right"><a ng-click="display.deleteMessage(message)">X</a></div>
-        <p class="text-muted"><small>{{ message.createdAt | fromNow }}</small></p>
-        <p>{{ message.id }}: {{ message.content }}</p>
+        <p class="text-muted">{{ message.createdAt | fromNow }}</p>
+        <p class="lead">{{ message.content }}</p>
       </div>
 
     </div>
