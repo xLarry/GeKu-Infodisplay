@@ -1,6 +1,6 @@
 angular.module("GekuInfodisplay")
 
-    .controller("DisplayCtrl", function(MessageService) {
+    .controller("DisplayCtrl", function(MessageService, $interval) {
 
         var display = this;
 
@@ -21,9 +21,15 @@ angular.module("GekuInfodisplay")
         };
 
         display.getMessages = function getMessages() {
-            display.messages = MessageService.get();
+             MessageService.get(function(messages) {
+                 display.messages = messages;
+            });
         };
 
         display.getMessages();
+
+        $interval(function() {
+            display.getMessages();
+        }, 10 * 1000);
 
     });
