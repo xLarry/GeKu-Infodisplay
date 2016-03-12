@@ -55,6 +55,25 @@ module.exports = function(grunt) {
                     }
                 ]
             }
+        },
+
+        watch: {
+            options: {
+                spawn: false,
+                livereload: true
+            },
+            css: {
+                files: ['frontend-src/css/**/*.*'],
+                tasks: ['sass']
+            },
+            js: {
+                files: ['frontend-src/js/**/*.*'],
+                tasks: ['concat']
+            },
+            html: {
+                files: ['frontend-src/**/*.html'],
+                tasks: ['copy']
+            }
         }
 
     });
@@ -64,6 +83,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Default task(s).
     grunt.registerTask('default', ['clean', 'concat', 'sass', 'copy']);
