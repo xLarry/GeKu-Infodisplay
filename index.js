@@ -11,7 +11,7 @@ var saunaService    = require('./services/saunaService.js')(wia);
 var app             = express();
 var router          = express.Router();
 
-app.use(express.static(__dirname + '/frontend'));
+app.use(express.static(__dirname + '/frontend', {extensions: ['html']}));
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST

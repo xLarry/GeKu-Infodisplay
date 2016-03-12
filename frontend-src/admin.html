@@ -16,12 +16,17 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-6" ng-cloak>
 
-      <div class="well" ng-repeat="message in display.messages | orderBy : '-id'">
-        <div class="pull-right"><a ng-click="display.deleteMessage(message)">X</a></div>
-        <p class="text-muted"><small>{{ message.createdAt | date: 'EEEE, d. MMMM y - HH:mm:ss' }}</small></p>
-        <p>{{ message.id }}: {{ message.content }}</p>
+      <h1>Infodisplay</h1>
+
+      <div class="form-group">
+        <label for="msg">Nachricht eingeben</label>
+        <input type="text" class="form-control" id="msg" ng-model="display.message">
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-success" ng-click="display.createMessage()">Absenden</button>
       </div>
 
     </div>
