@@ -7,6 +7,7 @@ wia.stream.connect();
 
 var models          = require('./models/index.js');
 var saunaService    = require('./services/saunaService.js')(wia);
+var weatherService  = require('./services/weatherService.js')(keys.forecast);
 
 var app             = express();
 var router          = express.Router();
@@ -83,6 +84,13 @@ router.route('/sauna')
     .get(function(req, res) {
         saunaService.getTemp().then(function(temp) {
             res.json({temp: temp});
+        });
+    })
+
+router.route('/weather')
+    .get(function(req, res) {
+        weatherService.getDetails().then(function(weather) {
+            res.json(weather);
         });
     })
 
