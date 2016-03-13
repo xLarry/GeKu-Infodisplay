@@ -20,7 +20,8 @@ module.exports = function(grunt) {
                         'node_modules/angular/angular.js',
                         'node_modules/angular-resource/angular-resource.min.js',
                         'node_modules/moment/moment.js',
-                        'node_modules/moment/locale/de.js'
+                        'node_modules/moment/locale/de.js',
+                        'frontend-src/js/lib/skycons.js'
                     ],
                     'frontend/js/app-complete.js': [
                         'frontend-src/js/app.js',
@@ -52,7 +53,7 @@ module.exports = function(grunt) {
                     {
                         expand: true,
                         cwd: 'frontend-src',
-                        src: ['**/*.html'],
+                        src: ['**/*.html', 'fonts/*.*', 'img/*.*', 'css/*.css'],
                         dest: 'frontend/'
                     }
                 ]

@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('/fonts/RobotoCondensed-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -20,6 +27,28 @@ p {
 
 .lead {
   margin-bottom: 0;
+  font-family: 'Roboto Condensed', sans-serif;
   font-weight: 400;
   font-size: 2em;
+}
+
+.weather {
+	display: flex;
+	align-items: center;
+	font-family: 'Roboto Condensed';
+	text-align: center;
+
+	canvas {
+		vertical-align: middle;
+	}
+	
+	.today {
+		div {
+				display: inline-block;
+				vertical-align: middle;
+				text-align: left;
+				font-size: 1.2em;
+				line-height: 1;
+			}
+	}
 }
