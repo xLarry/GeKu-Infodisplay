@@ -1,7 +1,9 @@
 angular.module("GekuInfodisplay")
 
     .filter("fromNow", function() {
-        return function(date) {
+        var fromNow = function(date) {
             return moment(date).fromNow();
         };
+        fromNow.$stateful = true;
+        return fromNow;
     });
