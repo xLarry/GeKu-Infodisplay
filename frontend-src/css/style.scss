@@ -35,7 +35,7 @@ p {
 .weather {
 	display: flex;
 	align-items: center;
-	font-family: 'Roboto Condensed';
+	font-family: 'Roboto Condensed', sans-serif;
 	text-align: center;
 
 	canvas {
@@ -50,5 +50,40 @@ p {
 				font-size: 1.2em;
 				line-height: 1;
 			}
+	}
+}
+
+.calendar {
+	display: flex;
+	align-items: center;
+
+	i {
+		font-size: 50px;
+		margin-right: 10px;
+	}
+
+	.date {
+
+	}
+
+	.title {
+		font-size: 1.2em;
+		font-family: 'Roboto Condensed', sans-serif;
+	}
+}
+
+.sauna {
+	border-left: 1px solid #eee;
+
+	display: flex;
+	align-items: center;
+
+	i {
+		font-size: 50px;
+		margin-right: 10px;
+	}
+
+	.temperature {
+		font-size: 1.2em;
 	}
 }
