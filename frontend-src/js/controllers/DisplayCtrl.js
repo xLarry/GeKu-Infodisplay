@@ -1,6 +1,6 @@
 angular.module("GekuInfodisplay")
 
-    .controller("DisplayCtrl", function(CalendarService, MessageService, WeatherService, $interval) {
+    .controller("DisplayCtrl", function(CalendarService, MessageService, SaunaService, WeatherService, $interval) {
 
         var display = this;
 
@@ -8,6 +8,7 @@ angular.module("GekuInfodisplay")
 
         display.events  = [];
         display.message = "My awesome message";
+        display.sauna   = {};
         display.weather = {};
 
         /* Events */
@@ -44,6 +45,16 @@ angular.module("GekuInfodisplay")
 
         display.getMessages();
 
+        /* Sauna */
+
+        display.getSauna = function getSauna() {
+            SaunaService.get(function(sauna) {
+                display.sauna = sauna;
+            })
+        };
+
+        display.getSauna();
+
         /* Weather */
 
         display.getWeather = function getWeather() {
@@ -65,6 +76,7 @@ angular.module("GekuInfodisplay")
 
         $interval(function() {
             display.getMessages();
+            display.getSauna();
         }, 10 * 1000);
 
         $interval(function() {

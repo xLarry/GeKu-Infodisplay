@@ -22,7 +22,7 @@
         <canvas id="weatherCurrent" width="75" height="75"></canvas>
         <div>
           <span class="temperature">{{ display.weather.currently.temperature | number:0 }} °C</span><br />
-          <span class="precip">{{ display.weather.currently.precipProbability * 100 | number:0}} %</span>
+          <span class="precip">{{ display.weather.currently.precipProbability * 100 | number:0 }} %</span>
         </div>
       </div>
     </div>
@@ -54,8 +54,8 @@
         <i class="icon-sauna"></i>
         <div class="">
           <span class="text-muted date">Sauna</span><br />
-          <span class="temperature">21 °C</span>
-          <span class="tendency heating">»</span>
+          <span class="temperature">{{ display.sauna.temp | number:0 }} °C</span>
+          <!-- <span class="tendency heating">»</span> -->
         </div>
       </div>
     </div>
