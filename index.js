@@ -2,6 +2,7 @@ var express         = require('express');
 var bodyParser      = require('body-parser');
 var keys            = require('./keys.js')
 var wia             = require('wia')(keys.wia);
+var ical            = require('ical');
 
 wia.stream.connect();
 
@@ -35,6 +36,25 @@ router.use(function(req, res, next) {
 router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
 });
+
+router.route('/calendar')
+
+    .get(function(req, res) {
+        var upcomingEvents = [];
+
+        ical.fromURL('https://p03-calendars.icloud.com/published/2/wjgPToDQlpfvLsUONU28b6anOZOcC7-T_aG6ZsFykR1S5to4CSv7D1nWT4Aza07TRGRJ_X_D7eenquayKbgphdGxxNMPXUdjMXYPh81gjFk', {}, function(err, data) {
+          for (var k in data){
+            if (data.hasOwnProperty(k)) {
+                // Prüfen ob das Event schon vorbei ist
+                if (data[k].end >= Date.now()) {
+                    upcomingEvents.push(data[k])
+                }
+            }
+          }
+
+          res.json(upcomingEvents);
+        });
+    });
 
 router.route('/messages')
 

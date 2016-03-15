@@ -1,14 +1,24 @@
 angular.module("GekuInfodisplay")
 
-    .controller("DisplayCtrl", function(MessageService, WeatherService, $interval) {
+    .controller("DisplayCtrl", function(CalendarService, MessageService, WeatherService, $interval) {
 
         var display = this;
 
         var skycons = new Skycons();
 
+        display.events  = [];
         display.message = "My awesome message";
-
         display.weather = {};
+
+        /* Events */
+
+        display.getEvents = function getEvents() {
+            CalendarService.get(function(events) {
+                display.events = events;
+            })
+        }
+
+        display.getEvents();
 
         /* Messages */
 
@@ -34,6 +44,8 @@ angular.module("GekuInfodisplay")
 
         display.getMessages();
 
+        /* Weather */
+
         display.getWeather = function getWeather() {
             WeatherService.get(function(weather) {
                 display.weather = weather;
@@ -54,5 +66,9 @@ angular.module("GekuInfodisplay")
         $interval(function() {
             display.getMessages();
         }, 10 * 1000);
+
+        $interval(function() {
+            display.getEvents();
+        }, 60 * 60 * 1000);
 
     });

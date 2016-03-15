@@ -43,11 +43,11 @@
   <hr />
 
   <div class="row">
-    <div class="col-xs-7 calendar">
+    <div class="col-xs-7 calendar" ng-repeat="event in display.events | orderBy: start | limitTo: 1">
       <i class="icon-calendar-empty"></i>
       <div>
-        <span class="text-muted date">in 4 Tagen</span><br />
-        <span class="title">GeKu's kochen</span>
+        <span class="text-muted date">{{ event.start | calendar }}</span><br />
+        <span class="title">{{ event.summary }}</span>
       </div>
     </div>
     <div class="col-xs-5 sauna">
