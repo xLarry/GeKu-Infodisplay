@@ -86,4 +86,35 @@ p {
 	.temperature {
 		font-size: 1.2em;
 	}
+
+  @keyframes heatingAnimation {
+    0%   { top: 20px; opacity: 0; }
+    100% { top: 0; opacity: 1; }
+  }
+
+  @keyframes coolingAnimation {
+    0%   { top: 0; opacity: 0; }
+    100% { top: 20px; opacity: 1; }
+  }
+
+  .tendency {
+    font-size: 30px;
+    position: absolute;
+    left: 120px;
+    display: none;
+
+    &.heating {
+      transform: rotate(-90deg);
+      animation: heatingAnimation 2s infinite ease-in-out;
+      color: red;
+      display: inline-block;
+    }
+
+    &.cooling {
+      transform: rotate(90deg);
+      animation: coolingAnimation 2s infinite ease-in-out;
+      color: blue;
+      display: inline-block;
+    }
+  }
 }
