@@ -4,14 +4,7 @@ module.exports = function(sequelize, DataTypes) {
         content: {type: DataTypes.STRING}
     });
 
-    Message.sync({force: true}).then(function(){
-        Message.create({
-            content: 'asdf'
-        });
-        Message.create({
-            content: 'jklö'
-        });
-    });
+    Message.sync();
 
     return Message;
 };
