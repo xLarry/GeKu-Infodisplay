@@ -1,6 +1,6 @@
 angular.module("GekuInfodisplay")
 
-    .controller("DisplayCtrl", function(CalendarService, MessageService, SaunaService, WeatherService, $interval) {
+    .controller("DisplayCtrl", function(CalendarService, MessageService, SaunaService, WeatherService, $interval, $location) {
 
         var display = this;
 
@@ -27,6 +27,7 @@ angular.module("GekuInfodisplay")
             MessageService
                 .create({content: display.message}, function(res) {
                     display.messages.push(res);
+                    window.location = '/';
                 });
         };
 
