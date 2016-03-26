@@ -71,8 +71,13 @@ angular.module("GekuInfodisplay")
 
         display.getWeather();
 
+        display.getTemp = function getTemp(offset) {
+            if (!display.weather.daily) return false;
+            return (display.weather.daily.data[offset].temperatureMin + display.weather.daily.data[offset].temperatureMax) / 2;
+        }
+
         display.getWeekday = function getWeekday(offset) {
-            return moment().add(offset, 'days').format('dd');
+            return moment().add(offset, 'days').format('dddd');
         }
 
         $interval(function() {

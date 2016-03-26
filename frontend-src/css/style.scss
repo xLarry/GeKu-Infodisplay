@@ -9,82 +9,74 @@
   display: none !important;
 }
 
+body {
+  margin: 20px;
+
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 180%;
+}
+
 a {
   cursor: pointer;
 }
 
-body {
-  margin: 20px;
-}
-
-.well {
-  padding: 10px;
+h1, h2 {
+	color: #337ab7;
 }
 
 p {
   margin: 0;
 }
 
-.lead {
-  margin-bottom: 0;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-weight: 400;
-  font-size: 2em;
+.weather, .calendar, .sauna, .messages {
+	background: #f9f9f9;
+	padding: 10px;
 }
 
 .weather {
-	display: flex;
-	align-items: center;
-	font-family: 'Roboto Condensed', sans-serif;
-	text-align: center;
 
 	canvas {
 		vertical-align: middle;
 	}
-	
-	.today {
-		div {
-				display: inline-block;
-				vertical-align: middle;
-				text-align: left;
-				font-size: 1.2em;
-				line-height: 1;
-			}
+
+	table {
+		text-align: center;
+
+		td {
+			padding: 5px 10px;
+		}
+
+		tr:first-child {
+			font-size: 1.4em;
+			font-weight: bold;
+		}
 	}
 }
 
 .calendar {
-	display: flex;
-	align-items: center;
 
 	i {
+
+		float: left;
 		font-size: 50px;
 		margin-right: 10px;
 	}
 
-	.date {
-
-	}
-
 	.title {
 		font-size: 1.2em;
-		font-family: 'Roboto Condensed', sans-serif;
 	}
 }
 
 .sauna {
-	border-left: 1px solid #eee;
-
-	display: flex;
-	align-items: center;
 
 	i {
+		float: left;
 		font-size: 50px;
 		margin-right: 10px;
 	}
 
 	.temperature {
-		font-size: 1.2em;
+		font-size: 2em;
 	}
 
   @keyframes heatingAnimation {
@@ -117,4 +109,83 @@ p {
       display: inline-block;
     }
   }
+}
+
+.messages {
+
+	.bubble {
+		position: relative;
+		background: #fff;
+		border: 1px solid #ccc;
+		padding: 10px;
+		margin-bottom: 50px;
+	}
+
+	.bubble:after, .bubble:before {
+		top: 100%;
+		left: 90%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+
+	.bubble:after {
+		border-color: rgba(255, 255, 255, 0);
+		border-top-color: #fff;
+		border-width: 30px;
+		margin-left: -30px;
+	}
+	.bubble:before {
+		border-color: rgba(204, 204, 204, 0);
+		border-top-color: #ccc;
+		border-width: 31px;
+		margin-left: -31px;
+	}
+
+	.text-muted {
+		text-align: right;
+	}
+
+	/*.bubble {
+		position: relative;
+		border-radius: 5px;
+
+		border: solid #ccc;
+		background: #fff;
+	}
+
+	.bubble:before {
+	  content:"";
+	  position: absolute;
+	  right: 15px;
+	  bottom: -26px;
+	  width: 0;
+	  height: 0;
+
+	  border-top: 26px solid #fff;
+	  border-left: 13px solid transparent;
+	  border-right: 13px solid transparent;
+	}
+
+	.bubble p {
+	  position: inherit;
+	  width: inherit;
+	  height: inherit;
+	  background: inherit;
+	  
+	  margin: 0;
+	  padding: 0;
+	  
+	  border: none;
+	  resize: none;
+	}*/
+
+	.lead {
+	  margin-bottom: 0;
+	  font-weight: 400;
+	  font-size: 2em;
+	}
 }

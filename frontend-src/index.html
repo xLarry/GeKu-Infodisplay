@@ -14,63 +14,68 @@
 </head>
 <body>
 
-<div class="container">
 
-  <div class="row weather">
-    <div class="col-xs-5">
-      <div class="today">
-        <canvas id="weatherCurrent" width="75" height="75"></canvas>
-        <div>
-          <span class="temperature">{{ display.weather.currently.temperature | number:0 }} °C</span><br />
-          <span class="precip">{{ display.weather.currently.precipProbability * 100 | number:0 }} %</span>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-2">
-      <canvas id="weatherDay1" width="40" height="40"></canvas>
-      <div>{{ display.getWeekday(1) }}</div>
-    </div>
-    <div class="col-xs-2">
-      <canvas id="weatherDay2" width="40" height="40"></canvas>
-      <div>{{ display.getWeekday(2) }}</div>
-    </div>
-    <div class="col-xs-2">
-      <canvas id="weatherDay3" width="40" height="40"></canvas>
-      <div>{{ display.getWeekday(3) }}</div>
+<div class="row">
+  <div class="col-xs-6">
+
+    <div class="weather">
+      <h1>Wetter</h1>
+      <table td-spacing="5">
+        <tr>
+          <td>Aktuell</td>
+          <td><canvas id="weatherCurrent" width="75" height="75"></canvas></td>
+          <td>{{ display.weather.currently.temperature | number:0 }} °C</td>
+          <td>({{ display.weather.currently.precipProbability * 100 | number:0 }} %)</td>
+        <tr>
+        <tr>
+          <td>{{ display.getWeekday(1) }}</td>
+          <td><canvas id="weatherDay1" width="40" height="40"></canvas></td>
+          <td>{{ display.getTemp(1) | number:0 }} °C</td>
+          <td>({{ display.weather.daily.data[1].precipProbability * 100 | number:0 }} %)</td>
+        <tr>
+        <tr>
+          <td>{{ display.getWeekday(2) }}</td>
+          <td><canvas id="weatherDay2" width="40" height="40"></canvas></td>
+          <td>{{ display.getTemp(2) | number:0 }} °C</td>
+          <td>({{ display.weather.daily.data[2].precipProbability * 100 | number:0 }} %)</td>
+        <tr>
+      </table>
     </div>
   </div>
 
-  <hr />
+  <div class="col-xs-6">
 
-  <div class="row">
-    <div class="col-xs-7 calendar" ng-repeat="event in display.events | orderBy: start | limitTo: 1">
+    <div class="calendar" ng-repeat="event in display.events | orderBy: start | limitTo: 1">
+      <h2>Termine</h2>
       <i class="icon-calendar-empty"></i>
       <div>
         <span class="text-muted date">{{ event.start | calendar }}</span><br />
         <span class="title">{{ event.summary }}</span>
       </div>
     </div>
-    <div class="col-xs-5 sauna">
-        <i class="icon-sauna"></i>
-        <div class="">
-          <span class="text-muted date">Sauna</span><br />
-          <span class="temperature">{{ display.sauna.temp | number:0 }} °C</span>
-          <!-- <span class="tendency heating">»</span> -->
-        </div>
-      </div>
+
+    <div class="sauna">
+      <h2>Sauna</h2>
+      <i class="icon-sauna"></i> <span class="temperature">{{ display.sauna.temp | number:0 }} °C</span>
+      <!-- <span class="tendency heating">»</span> -->
     </div>
+    </div>
+
   </div>
 
   <hr />
 
   <div class="row">
     <div class="col-xs-12">
-
-      <div class="well" ng-repeat="message in display.messages | orderBy : '-id' track by message.id">
-        <p class="text-muted">{{ message.createdAt | fromNow }}</p>
-        <p class="lead">{{ message.content }}</p>
+      <div class="messages">
+        <h1>Mitteilungen</h1>
+        <div ng-repeat="message in display.messages | orderBy : '-id' track by message.id">
+          <div class="bubble">
+            <p class="text-muted">{{ message.createdAt | fromNow }}</p>
+            <p class="lead">{{ message.content }}</p>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
 
