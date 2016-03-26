@@ -80,13 +80,16 @@ angular.module("GekuInfodisplay")
             return moment().add(offset, 'days').format('dddd');
         }
 
+        // Alle 10 Sekunden
         $interval(function() {
             display.getMessages();
             display.getSauna();
         }, 10 * 1000);
 
+        // Alle 60 Minuten
         $interval(function() {
             display.getEvents();
+            display.getWeather();
         }, 60 * 60 * 1000);
 
     });
