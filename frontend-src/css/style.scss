@@ -45,6 +45,10 @@ p {
 			padding: 5px 10px;
 		}
 
+		td:nth-child(2) {
+			width: 100%;
+		}
+
 		tr:first-child {
 			font-size: 1.2em;
 			font-weight: bold;

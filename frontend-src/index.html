@@ -30,20 +30,20 @@
         <tr>
           <td>Aktuell</td>
           <td><canvas id="weatherCurrent" width="75" height="75"></canvas></td>
-          <td>{{ display.weather.currently.temperature | number:0 }} °C</td>
-          <td>({{ display.weather.currently.precipProbability * 100 | number:0 }} %)</td>
+          <td>{{ display.weather.currently.temperature | number:0 }}&nbsp;°C</td>
+          <td>({{ display.weather.currently.precipProbability * 100 | number:0 }}&nbsp;%)</td>
         <tr>
         <tr>
           <td>{{ display.getWeekday(1) }}</td>
           <td><canvas id="weatherDay1" width="40" height="40"></canvas></td>
-          <td>{{ display.getTemp(1) | number:0 }} °C</td>
-          <td>({{ display.weather.daily.data[1].precipProbability * 100 | number:0 }} %)</td>
+          <td>{{ display.getTemp(1) | number:0 }}&nbsp;°C</td>
+          <td>({{ display.weather.daily.data[1].precipProbability * 100 | number:0 }}&nbsp;%)</td>
         <tr>
         <tr>
           <td>{{ display.getWeekday(2) }}</td>
           <td><canvas id="weatherDay2" width="40" height="40"></canvas></td>
-          <td>{{ display.getTemp(2) | number:0 }} °C</td>
-          <td>({{ display.weather.daily.data[2].precipProbability * 100 | number:0 }} %)</td>
+          <td>{{ display.getTemp(2) | number:0 }}&nbsp;°C</td>
+          <td>({{ display.weather.daily.data[2].precipProbability * 100 | number:0 }}&nbsp;%)</td>
         <tr>
       </table>
     </div>
