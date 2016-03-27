@@ -7,7 +7,7 @@ angular.module("GekuInfodisplay")
         var skycons = new Skycons();
 
         display.events  = [];
-        display.message = "My awesome message";
+        display.message = "";
         display.sauna   = {};
         display.weather = {};
 
