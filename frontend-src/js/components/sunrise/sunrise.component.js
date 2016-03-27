@@ -2,7 +2,7 @@ angular.module("GekuInfodisplay")
   .component('sunrise', {
     templateUrl : 'js/components/sunrise/sunrise.component.html',
     controller  : function ($interval, SunriseService) {
-      var updateSunriseData = () => SunriseService().then(data => this.sunData = data);
+      var updateSunriseData = () => SunriseService().subscribe(data => this.sunData = data);
       updateSunriseData();
 
       // hourly update

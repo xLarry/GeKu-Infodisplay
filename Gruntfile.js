@@ -35,6 +35,8 @@ module.exports = function(grunt) {
                         'node_modules/angular-resource/angular-resource.min.js',
                         'node_modules/moment/moment.js',
                         'node_modules/moment/locale/de.js',
+                        'node_modules/rx/dist/rx.all.js',
+                        'node_modules/rx-angular/dist/rx.angular.js',
                         'frontend-src/js/lib/skycons.js'
                     ],
                     'frontend/js/app-complete.js': [
