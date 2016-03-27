@@ -25,7 +25,7 @@ module.exports = function(grunt) {
                     ],
                     'frontend/js/app-complete.js': [
                         'frontend-src/js/app.js',
-                        'frontend-src/js/**/*.*'
+                        'frontend-src/js/**/*.js'
                     ]
                 }
             }
