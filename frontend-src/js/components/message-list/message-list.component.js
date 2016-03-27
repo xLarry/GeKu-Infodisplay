@@ -8,15 +8,7 @@ angular.module("GekuInfodisplay")
           .then(this.getMessages)
       };
 
-      this.getMessages = () => {
-        MessageService.get()
-          .then(messages => this.messages = messages);
-      };
-
-      this.getMessages();
-
-      // Alle 10 Sekunden
-      $interval(this.getMessages, 10 * 1000);
+      MessageService.events.subscribe(messages => this.messages = messages);
 
     }
   });

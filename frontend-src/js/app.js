@@ -1,9 +1,12 @@
-angular.module("GekuInfodisplay", ['ngResource', 'rx'])
+angular.module("GekuInfodisplay", ['ngResource', 'rx', 'btford.socket-io'])
 
-    .config(function() {
-        console.log("config");
-    })
+  .config(function () {
+    console.log("config");
+  })
 
-    .run(function() {
-        moment.locale('de');
-    });
+  .run(function () {
+    moment.locale('de');
+
+  })
+  .factory('socket', socketFactory => socketFactory());
+

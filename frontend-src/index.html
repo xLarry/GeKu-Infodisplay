@@ -62,7 +62,7 @@
 
     <div class="sauna">
       <h2>Sauna</h2>
-      <i class="icon-sauna"></i> <span class="temperature">{{ display.sauna.temp | number:0 }} °C</span>
+      <i class="icon-sauna"></i> <span class="temperature">{{ display.sauna }} °C</span>
       <!-- <span class="tendency heating">»</span> -->
     </div>
     </div>
@@ -74,6 +74,7 @@
 
 </div>
 
+<script src="/socket.io/socket.io.js"></script>
 <script src="js/libraries.js"></script>
 <script src="js/app-complete.js"></script>
 

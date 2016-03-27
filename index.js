@@ -12,6 +12,8 @@ var weatherService  = require('./services/weatherService.js')(keys.forecast);
 
 var app             = express();
 var router          = express.Router();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 app.use(express.static(__dirname + '/frontend', {extensions: ['html']}));
 
@@ -19,9 +21,6 @@ app.use(express.static(__dirname + '/frontend', {extensions: ['html']}));
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-//  Send temperature to Wia every 60 seconds
-setInterval(saunaService.sendTemp, 60000);
 
 /* Routes */
 
@@ -120,6 +119,55 @@ app.use('/api', router);
 
 var port = process.env.PORT || 3000;
 
-app.listen(port, function () {
+server.listen(port, function () {
     console.log('Example app listening on port ' + port + '!');
+});
+
+
+
+// Add Socket Functions
+io.on('connection', function (socket) {
+
+  function emitUpdates(){
+    saunaService.getTemp()
+      .then(function(temp){
+        socket.emit('sauna', temp);
+      });
+
+    weatherService.getDetails()
+      .then(function(weather) {
+        socket.emit('weather', weather);
+      })
+
+    // TODO: Duplicate Code
+    // TODO: Extract to service
+    // TODO: Use Promise
+    ical.fromURL('https://p03-calendars.icloud.com/published/2/wjgPToDQlpfvLsUONU28b6anOZOcC7-T_aG6ZsFykR1S5to4CSv7D1nWT4Aza07TRGRJ_X_D7eenquayKbgphdGxxNMPXUdjMXYPh81gjFk', {}, function(err, data) {
+
+      var upcomingEvents = [];
+
+      for (var k in data){
+        if (data.hasOwnProperty(k)) {
+          // Prüfen ob das Event schon vorbei ist
+          if (data[k].end >= Date.now()) {
+            upcomingEvents.push(data[k])
+          }
+        }
+      }
+
+      socket.emit('calendar', upcomingEvents);
+    });
+
+
+    models.message.findAll().then(function(messages) {
+      socket.emit('messages', messages);
+    });
+  }
+
+  //  Send temperature to Wia every 60 seconds
+  setInterval(emitUpdates, 5000);
+
+  emitUpdates();
+
+
 });

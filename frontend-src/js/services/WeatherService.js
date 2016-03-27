@@ -1,13 +1,20 @@
 angular.module("GekuInfodisplay")
 
-    .factory("WeatherService", ['$resource', WeatherService]);
+  .factory("WeatherService", WeatherService);
 
-function WeatherService($resource) {
-    return $resource(
-        'api/weather'
-        , {}
-        , {
-            get: {method: 'GET', isArray: false}
-        }
-    )
+function WeatherService ($http, socket, rx) {
+
+  var subject = new rx.Subject();
+
+  socket.on('weather', function (temp) {
+    subject.onNext(temp)
+  });
+
+  return {
+    get    : function () {
+      return $http.get('/api/weather')
+        .then(response => response.data)
+    },
+    events : subject
+  };
 }

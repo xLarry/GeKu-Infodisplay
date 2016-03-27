@@ -1,6 +1,6 @@
 angular.module("GekuInfodisplay")
 
-  .factory("MessageService", function MessageService ($http) {
+  .factory("MessageService", function MessageService ($http, rx, socket) {
 
     var baseUrl = 'api/messages/';
 
@@ -18,10 +18,17 @@ angular.module("GekuInfodisplay")
       return $http.get(baseUrl).then(transformData);
     }
 
+    var subject = new rx.Subject();
+
+    socket.on('messages', function(events){
+      subject.onNext(events)
+    });
+
     return {
       get : getMessages,
       create : createMessage,
-      delete : deleteMessage
+      delete : deleteMessage,
+      events: subject
     };
   });
 

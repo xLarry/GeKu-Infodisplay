@@ -33,6 +33,7 @@ module.exports = function(grunt) {
                         'node_modules/jquery/dist/jquery.js',
                         'node_modules/angular/angular.js',
                         'node_modules/angular-resource/angular-resource.min.js',
+                        'node_modules/angular-socket-io/socket.js',
                         'node_modules/moment/moment.js',
                         'node_modules/moment/locale/de.js',
                         'node_modules/rx/dist/rx.all.js',

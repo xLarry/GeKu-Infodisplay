@@ -23,7 +23,7 @@ module.exports = function(wia) {
             });
         }
 
-        , sendTemp: function() {
+        , sendTemp: function(socket) {
             saunaService.getTemp().then(function(temp) {
                 wia.events.publish(
                     { name: "temperature",
