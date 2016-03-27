@@ -119,9 +119,7 @@ app.use('/api', router);
 
 var port = process.env.PORT || 3000;
 
-server.listen(port, function () {
-    console.log('Example app listening on port ' + port + '!');
-});
+server.listen(port, () => console.log('Example app listening on port ' + port + '!') );
 
 
 
@@ -130,14 +128,10 @@ io.on('connection', function (socket) {
 
   function emitUpdates(){
     saunaService.getTemp()
-      .then(function(temp){
-        socket.emit('sauna', temp);
-      });
+      .then( (temp) => socket.emit('sauna', temp) );
 
     weatherService.getDetails()
-      .then(function(weather) {
-        socket.emit('weather', weather);
-      })
+      .then( (weather) => socket.emit('weather', weather) );
 
     // TODO: Duplicate Code
     // TODO: Extract to service
@@ -159,9 +153,8 @@ io.on('connection', function (socket) {
     });
 
 
-    models.message.findAll({logging: false}).then(function(messages) {
-      socket.emit('messages', messages);
-    });
+    models.message.findAll({logging: false})
+      .then( (messages) => socket.emit('messages', messages) );
   }
 
   // Send temperature to Wia every 60 seconds

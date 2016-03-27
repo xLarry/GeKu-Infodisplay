@@ -6,9 +6,7 @@ function SaunaService ($http, socket, rx) {
 
   var subject = new rx.Subject();
 
-  socket.on('sauna', function (temp) {
-    subject.onNext(temp)
-  });
+  socket.on('sauna', (temp) => subject.onNext(temp));
 
   return {
     get : function () {

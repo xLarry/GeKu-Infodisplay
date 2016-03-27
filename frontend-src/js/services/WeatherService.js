@@ -6,9 +6,7 @@ function WeatherService ($http, socket, rx) {
 
   var subject = new rx.Subject();
 
-  socket.on('weather', function (temp) {
-    subject.onNext(temp)
-  });
+  socket.on('weather', (weather) => subject.onNext(weather));
 
   return {
     get    : function () {

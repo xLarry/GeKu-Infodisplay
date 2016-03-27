@@ -20,9 +20,7 @@ angular.module("GekuInfodisplay")
 
     var subject = new rx.Subject();
 
-    socket.on('messages', function(events){
-      subject.onNext(events)
-    });
+    socket.on('messages', (messages) => subject.onNext(messages));
 
     return {
       get : getMessages,

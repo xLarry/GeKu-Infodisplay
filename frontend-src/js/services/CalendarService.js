@@ -6,9 +6,7 @@ function CalendarService ($http, rx, socket) {
 
   var subject = new rx.Subject();
 
-  socket.on('calendar', function(events){
-    subject.onNext(events)
-  });
+  socket.on('calendar', (events) => subject.onNext(events));
 
   return {
     get    : function () {
