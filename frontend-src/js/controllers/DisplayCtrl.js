@@ -1,95 +1,68 @@
 angular.module("GekuInfodisplay")
 
-    .controller("DisplayCtrl", function(CalendarService, MessageService, SaunaService, WeatherService, $interval, $location) {
+  .controller("DisplayCtrl", function (CalendarService, MessageService, SaunaService, WeatherService, $interval, $location) {
 
-        var display = this;
+    var display = this;
 
-        var skycons = new Skycons();
+    var skycons = new Skycons();
 
-        display.events  = [];
-        display.message = "";
-        display.sauna   = {};
-        display.weather = {};
+    display.events = [];
+    display.sauna = {};
+    display.weather = {};
 
-        /* Events */
+    /* Events */
 
-        display.getEvents = function getEvents() {
-            CalendarService.get(function(events) {
-                display.events = events;
-            })
-        }
+    display.getEvents = function getEvents () {
+      CalendarService.get(function (events) {
+        display.events = events;
+      })
+    }
 
-        display.getEvents();
+    display.getEvents();
 
-        /* Messages */
+    /* Sauna */
 
-        display.createMessage = function createMessage() {
-            MessageService
-                .create({content: display.message}, function(res) {
-                    display.messages.push(res);
-                    window.location = '/';
-                });
-        };
+    display.getSauna = function getSauna () {
+      SaunaService.get(function (sauna) {
+        display.sauna = sauna;
+      })
+    };
 
-        display.deleteMessage = function deleteMessage(message) {
-            MessageService
-                .delete({id: message.id}, function() {
-                    display.messages.splice(display.messages.indexOf(message), 1);
-                });
-        };
+    display.getSauna();
 
-        display.getMessages = function getMessages() {
-             MessageService.get(function(messages) {
-                 display.messages = messages;
-            });
-        };
+    /* Weather */
 
-        display.getMessages();
+    display.getWeather = function getWeather () {
+      WeatherService.get(function (weather) {
+        display.weather = weather;
+        skycons.add("weatherCurrent", display.weather.currently.icon);
+        skycons.add("weatherDay1", display.weather.daily.data[1].icon);
+        skycons.add("weatherDay2", display.weather.daily.data[2].icon);
+        skycons.add("weatherDay3", display.weather.daily.data[3].icon);
+        skycons.play();
+      });
+    };
 
-        /* Sauna */
+    display.getWeather();
 
-        display.getSauna = function getSauna() {
-            SaunaService.get(function(sauna) {
-                display.sauna = sauna;
-            })
-        };
+    display.getTemp = function getTemp (offset) {
+      if (!display.weather.daily) return false;
+      return (display.weather.daily.data[offset].temperatureMin + display.weather.daily.data[offset].temperatureMax) / 2;
+    }
 
-        display.getSauna();
+    display.getWeekday = function getWeekday (offset) {
+      return moment().add(offset, 'days').format('dddd');
+    }
 
-        /* Weather */
+    // Alle 10 Sekunden
+    $interval(function () {
+      display.getSauna();
+    }, 10 * 1000);
 
-        display.getWeather = function getWeather() {
-            WeatherService.get(function(weather) {
-                display.weather = weather;
-                skycons.add("weatherCurrent", display.weather.currently.icon);
-                skycons.add("weatherDay1", display.weather.daily.data[1].icon);
-                skycons.add("weatherDay2", display.weather.daily.data[2].icon);
-                skycons.add("weatherDay3", display.weather.daily.data[3].icon);
-                skycons.play();
-            });
-        };
+    // Alle 60 Minuten
+    $interval(function () {
+      display.getEvents();
+      display.getWeather();
+    }, 60 * 60 * 1000);
 
-        display.getWeather();
-
-        display.getTemp = function getTemp(offset) {
-            if (!display.weather.daily) return false;
-            return (display.weather.daily.data[offset].temperatureMin + display.weather.daily.data[offset].temperatureMax) / 2;
-        }
-
-        display.getWeekday = function getWeekday(offset) {
-            return moment().add(offset, 'days').format('dddd');
-        }
-
-        // Alle 10 Sekunden
-        $interval(function() {
-            display.getMessages();
-            display.getSauna();
-        }, 10 * 1000);
-
-        // Alle 60 Minuten
-        $interval(function() {
-            display.getEvents();
-            display.getWeather();
-        }, 60 * 60 * 1000);
-
-    });
+  });

@@ -1,15 +1,27 @@
 angular.module("GekuInfodisplay")
 
-    .factory("MessageService", ['$resource', MessageService]);
+  .factory("MessageService", function MessageService ($http) {
 
-function MessageService($resource) {
-    return $resource(
-        'api/messages'
-        , {}
-        , {
-            get: {method: 'GET', isArray: true}
-            , create: {method: 'PUT'}
-            , delete: {method: 'DELETE'}
-        }
-    )
-}
+    var baseUrl = 'api/messages/';
+
+    var transformData = (response) => response.data;
+
+    function createMessage (message) {
+      return $http.put(baseUrl, message).then(transformData);
+    }
+
+    function deleteMessage (message) {
+      return $http.delete(baseUrl + message.id);
+    }
+
+    function getMessages () {
+      return $http.get(baseUrl).then(transformData);
+    }
+
+    return {
+      get : getMessages,
+      create : createMessage,
+      delete : deleteMessage
+    };
+  });
+

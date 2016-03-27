@@ -70,20 +70,7 @@
   </div>
 
   <hr />
-
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="messages">
-        <h1>Mitteilungen</h1>
-        <div ng-repeat="message in display.messages | orderBy : '-id' track by message.id">
-          <div class="bubble">
-            <p class="text-muted">{{ message.createdAt | fromNow }}</p>
-            <p class="lead">{{ message.content }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <message-list></message-list>
 
 </div>
 

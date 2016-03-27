@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" ng-app="GekuInfodisplay" ng-controller="DisplayCtrl as display">
+<html lang="de" ng-app="GekuInfodisplay">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,24 +14,7 @@
 <body>
 
 <div class="container">
-
-  <div class="row">
-    <div class="col-sm-6" ng-cloak>
-
-      <h1>Infodisplay</h1>
-
-      <div class="form-group">
-        <label for="msg">Nachricht eingeben</label>
-        <input type="text" class="form-control" id="msg" ng-model="display.message" placeholder="My awesome message">
-      </div>
-
-      <div class="form-group">
-        <button class="btn btn-success" ng-click="display.createMessage()">Absenden</button>
-      </div>
-
-    </div>
-  </div>
-
+  <message-create></message-create>
 </div>
 
 <script src="js/libraries.js"></script>
