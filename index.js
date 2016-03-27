@@ -159,12 +159,15 @@ io.on('connection', function (socket) {
     });
 
 
-    models.message.findAll().then(function(messages) {
+    models.message.findAll({logging: false}).then(function(messages) {
       socket.emit('messages', messages);
     });
   }
 
-  //  Send temperature to Wia every 60 seconds
+  // Send temperature to Wia every 60 seconds
+  setInterval(saunaService.sendTemp, 60 * 1000);
+
+  // Send frontend updates every 5 seconds
   setInterval(emitUpdates, 5000);
 
   emitUpdates();
