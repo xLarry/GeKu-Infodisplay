@@ -1,11 +1,25 @@
 module.exports = function(grunt) {
 
+    require('load-grunt-tasks')(grunt);
+
     // Project configuration.
     grunt.initConfig({
 
         clean: {
             frontend: {
                 src: ['frontend/**/*.*']
+            }
+        },
+
+        babel: {
+            options: {
+                sourceMap: true,
+                presets: ['babel-preset-es2015']
+            },
+            dist: {
+                files: {
+                    'frontend/js/app-complete.js': 'frontend/js/app-complete.js'
+                }
             }
         },
 
@@ -71,7 +85,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['frontend-src/js/**/*.*'],
-                tasks: ['concat']
+                tasks: ['concat','babel']
             },
             html: {
                 files: ['frontend-src/**/*.html'],
@@ -81,14 +95,7 @@ module.exports = function(grunt) {
 
     });
 
-    // Load the plugin that provides the "uglify" task.
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'concat', 'sass', 'copy']);
+    grunt.registerTask('default', ['clean', 'concat', 'sass', 'copy', 'babel']);
 
 };

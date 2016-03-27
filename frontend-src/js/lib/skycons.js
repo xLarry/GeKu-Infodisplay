@@ -709,4 +709,4 @@
   };
 
   global.Skycons = Skycons;
-}(this));
+}(window));
