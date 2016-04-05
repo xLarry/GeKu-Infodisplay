@@ -126,13 +126,17 @@ server.listen(port, () => console.log('Example app listening on port ' + port + 
 // Add Socket Functions
 io.on('connection', function (socket) {
 
-  function emitUpdates(){
+  function emitSauna() {
     saunaService.getTemp()
       .then( (temp) => socket.emit('sauna', temp) );
+  }
 
+  function emitWeather() {
     weatherService.getDetails()
       .then( (weather) => socket.emit('weather', weather) );
+  }
 
+  function emitCalendar(){
     // TODO: Duplicate Code
     // TODO: Extract to service
     // TODO: Use Promise
@@ -151,8 +155,9 @@ io.on('connection', function (socket) {
 
       socket.emit('calendar', upcomingEvents);
     });
+  }
 
-
+  function emitMessages() {
     models.message.findAll({logging: false})
       .then( (messages) => socket.emit('messages', messages) );
   }
@@ -160,10 +165,20 @@ io.on('connection', function (socket) {
   // Send temperature to Wia every 60 seconds
   setInterval(saunaService.sendTemp, 60 * 1000);
 
-  // Send frontend updates every 5 seconds
-  setInterval(emitUpdates, 5000);
+  // Send sauna to frontend every 30 seconds
+  setInterval(emitSauna, 30 * 1000);
+  emitSauna();
 
-  emitUpdates();
+  // Send weather to frontend every 30 minutes
+  setInterval(emitWeather, 30 * 60 * 1000);
+  emitWeather();
 
+  // Send calendar updates every 60 minutes
+  setInterval(emitCalendar, 60 * 60 * 1000);
+  emitCalendar();
+
+  // Send message updates every 5 seconds
+  setInterval(emitMessages, 5 * 1000);
+  emitMessages();
 
 });
