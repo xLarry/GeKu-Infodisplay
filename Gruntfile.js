@@ -38,7 +38,8 @@ module.exports = function(grunt) {
                         'node_modules/moment/locale/de.js',
                         'node_modules/rx/dist/rx.all.js',
                         'node_modules/rx-angular/dist/rx.angular.js',
-                        'frontend-src/js/lib/skycons.js'
+                        'frontend-src/js/lib/skycons.js',
+                        'node_modules/socket.io-client/socket.io.js'
                     ],
                     'frontend/js/app-complete.js': [
                         'frontend-src/js/app.js',
