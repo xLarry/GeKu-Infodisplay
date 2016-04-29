@@ -2,7 +2,7 @@ angular.module("GekuInfodisplay")
   .component('skycon', {
     template : '<canvas width="75" height="75"></canvas>',
     bindings : {
-      data : '='
+      data : '<'
     },
     controller : class {
 

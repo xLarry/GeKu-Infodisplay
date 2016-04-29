@@ -165,8 +165,8 @@ io.on('connection', function (socket) {
   // Send temperature to Wia every 60 seconds
   setInterval(saunaService.sendTemp, 60 * 1000);
 
-  // Send sauna to frontend every 30 seconds
-  setInterval(emitSauna, 30 * 1000);
+  // Send sauna to frontend every 3 minutes
+  setInterval(emitSauna, 3 * 60 * 1000);
   emitSauna();
 
   // Send weather to frontend every 30 minutes
@@ -177,8 +177,8 @@ io.on('connection', function (socket) {
   setInterval(emitCalendar, 60 * 60 * 1000);
   emitCalendar();
 
-  // Send message updates every 5 seconds
-  setInterval(emitMessages, 5 * 1000);
+  // Send message updates every 15 seconds
+  setInterval(emitMessages, 15 * 1000);
   emitMessages();
 
 });
