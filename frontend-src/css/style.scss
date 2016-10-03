@@ -27,10 +27,16 @@ p {
   margin: 0;
 }
 
-.weather, .calendar, .sauna, .messages {
+.clock, .weather, .calendar, .sauna, .messages {
 	background: #f9f9f9;
 	padding: 10px;
 }
+
+.clock{
+font-size: 50px;
+text-align: center;
+}
+
 
 .weather {
 
