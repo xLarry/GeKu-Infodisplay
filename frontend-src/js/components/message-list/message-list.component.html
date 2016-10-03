@@ -3,7 +3,7 @@
         <div class="messages">
             <h1>Mitteilungen</h1>
 
-            <div ng-repeat="message in $ctrl.messages | orderBy : '-id' track by message.id">
+            <div ng-repeat="message in $ctrl.messages | limitTo: 5 | orderBy : '-id' track by message.id">
                 <div class="bubble">
                     <p class="text-muted">{{ message.createdAt | fromNow }}</p>
 
