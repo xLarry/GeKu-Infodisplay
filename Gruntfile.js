@@ -52,10 +52,9 @@ module.exports = function(grunt) {
         sass: {
             options: {
                 style: 'expanded',
-                lineNumbers: true,
                 precision: 8,
-                loadPath: 'node_modules/bootstrap-sass/assets/stylesheets/',
-                sourcemap: 'none'
+                includePaths: ['node_modules/bootstrap-sass/assets/stylesheets/'],
+                sourceMap: true
             },
             frontend: {
                 files: {
